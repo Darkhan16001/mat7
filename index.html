@@ -1,0 +1,3124 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>§7 Екі жазықтық | MATH LAB PRO</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+ --bg:#071525;
+ --sidebar:#102c48;
+ --panel:#173a57;
+ --line:#547c9d;
+ --blue:#87dcff;
+ --gold:#ffe18e;
+ --green:#89efbc;
+ --red:#ffa2b4;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%}
+body{
+ background:var(--bg);
+ color:#f5fbff;
+ font-family:Manrope,Arial,sans-serif;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible{
+ outline:3px solid var(--gold);
+ outline-offset:2px;
+}
+
+/* БҮКІЛ САЙТ */
+#app{
+ height:100dvh;
+ display:grid;
+ grid-template-columns:260px minmax(0,1fr);
+ grid-template-rows:75px minmax(0,1fr);
+}
+header{
+ grid-column:1/-1;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ padding:9px 20px;
+ background:#102d49;
+ border-bottom:1px solid var(--line);
+}
+.logo{
+ font-size:28px;
+ font-weight:800;
+}
+.logo span{color:var(--blue)}
+.subtitle{
+ font-size:12px;
+ color:#c7dceb;
+}
+.topTools{
+ display:flex;
+ align-items:center;
+ gap:8px;
+}
+.topTools button,.badge{
+ padding:10px 12px;
+ color:white;
+ background:#296e99;
+ border:1px solid #77afd2;
+ border-radius:10px;
+ font-size:14px;
+ font-weight:800;
+}
+.badge{background:#1c496a}
+
+/* СОЛ ЖАҚ БАСҚАРУ */
+aside{
+ grid-column:1;
+ grid-row:2;
+ min-height:0;
+ overflow-y:auto;
+ padding:12px;
+ display:flex;
+ flex-direction:column;
+ background:var(--sidebar);
+ border-right:2px solid var(--line);
+}
+.sideTitle{
+ font-size:13px;
+ color:var(--blue);
+ font-weight:800;
+ margin:13px 5px 8px;
+}
+.sideBtn{
+ width:100%;
+ display:block;
+ padding:13px 12px;
+ margin:4px 0;
+ border:1px solid transparent;
+ border-radius:10px;
+ background:transparent;
+ color:#e9f6ff;
+ text-align:left;
+ font-size:15px;
+ font-weight:800;
+}
+.sideBtn.active{
+ background:#286c99;
+ border-color:#82bde3;
+ box-shadow:inset 5px 0 #b4efff;
+}
+.sideBtn:hover{background:#205679}
+.sideBottom{margin-top:auto}
+.sideTool{
+ width:100%;
+ display:block;
+ text-align:left;
+ margin:6px 0;
+ padding:12px;
+ color:white;
+ border:1px solid #648dab;
+ background:#215476;
+ border-radius:9px;
+ font-size:13px;
+ font-weight:800;
+}
+.timeBox{
+ background:#173d5b;
+ border:1px solid #648daa;
+ border-radius:12px;
+ padding:12px;
+}
+.timeRow{
+ display:flex;
+ justify-content:space-between;
+ margin:9px 0;
+ font-size:12px;
+}
+.timeRow b{color:var(--gold);font-size:15px}
+.timeBtns{display:flex;gap:6px}
+.timeBtns button{
+ flex:1;
+ padding:9px;
+ color:white;
+ background:#2b78a4;
+ border:0;
+ border-radius:8px;
+ font-weight:800;
+}
+
+/* НЕГІЗГІ БЕТ */
+main{
+ grid-column:2;
+ grid-row:2;
+ min-width:0;
+ min-height:0;
+ display:flex;
+ flex-direction:column;
+ background:radial-gradient(
+  ellipse at 85% 0%,
+  #1b4b70,#071525 75%
+ );
+}
+#slideView{
+ flex:1;
+ min-height:0;
+ overflow-y:auto;
+ padding:40px clamp(18px,4vw,60px) 35px;
+}
+.slide{
+ max-width:1250px;
+ margin:auto;
+}
+.eyebrow{
+ font-size:17px;
+ color:var(--blue);
+ font-weight:800;
+ margin-bottom:14px;
+}
+h1{
+ font-size:clamp(34px,4vw,55px);
+ line-height:1.35;
+ margin:0 0 25px;
+}
+.lead{
+ font-size:clamp(24px,2.5vw,32px);
+ line-height:1.8;
+ color:#e6f3ff;
+}
+.card{
+ padding:25px;
+ margin:18px 0;
+ background:var(--panel);
+ border:2px solid var(--line);
+ border-radius:20px;
+ min-width:0;
+}
+.card h3{
+ color:var(--blue);
+ font-size:clamp(27px,2.7vw,36px);
+ margin:0 0 12px;
+}
+.card p{
+ font-size:clamp(21px,2.1vw,28px);
+ line-height:1.8;
+ margin:12px 0;
+}
+strong{color:var(--gold)}
+.formula{
+ background:#071d32;
+ border-left:6px solid var(--gold);
+ border-radius:13px;
+ padding:22px;
+ margin:18px 0;
+ text-align:center;
+ font-size:clamp(29px,3vw,43px);
+ font-weight:800;
+ line-height:1.6;
+ overflow-x:auto;
+}
+.step{
+ padding:16px 20px;
+ margin:12px 0;
+ background:#205374;
+ border-left:5px solid var(--blue);
+ border-radius:12px;
+ font-size:clamp(20px,2vw,27px);
+ line-height:1.7;
+}
+.step:last-child{
+ border-color:var(--green);
+ background:#1b5447;
+}
+.tag{
+ display:inline-block;
+ padding:8px 13px;
+ background:#276184;
+ border-radius:8px;
+ color:#c9f2ff;
+ font-size:15px;
+ font-weight:800;
+}
+.figure{
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ width:100%;
+ min-width:0;
+ padding:18px;
+ margin:19px 0;
+ border:2px solid #6697b8;
+ border-radius:19px;
+ background:linear-gradient(135deg,#10334f,#20577b);
+}
+.figure svg{
+ width:100%;
+ height:auto;
+ max-width:650px;
+ max-height:350px;
+}
+.figure figcaption{
+ margin-top:10px;
+ font-size:20px;
+ font-weight:800;
+ text-align:center;
+}
+.grid2{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:16px;
+}
+.grid2>*{min-width:0}
+.grid2 .figure{margin:0}
+.grid2 svg{max-height:250px}
+details{
+ padding:19px;
+ margin:15px 0;
+ border:1px solid #668eaa;
+ background:#1b496a;
+ border-radius:12px;
+}
+summary{
+ color:var(--green);
+ font-size:23px;
+ font-weight:800;
+ cursor:pointer;
+}
+.action{
+ padding:15px 22px;
+ background:#198bcb;
+ color:white;
+ border:0;
+ border-radius:11px;
+ font-size:20px;
+ font-weight:800;
+}
+
+/* КОМАНДАЛЫҚ ОЙЫН */
+.scoreGrid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
+}
+.score{
+ background:#225878;
+ border:1px solid #6b96b3;
+ border-radius:12px;
+ text-align:center;
+ padding:16px;
+ font-size:20px;
+ font-weight:800;
+}
+.score b{
+ display:block;
+ color:var(--gold);
+ font-size:42px;
+}
+.choice{
+ display:block;
+ width:100%;
+ text-align:left;
+ padding:18px;
+ margin:10px 0;
+ border-radius:11px;
+ border:2px solid #729bb7;
+ background:#2b6082;
+ color:white;
+ font-size:23px;
+ font-weight:800;
+}
+.choice.correct{background:#168264}
+.choice.wrong{background:#a83f56}
+.choice:disabled{cursor:default}
+
+/* БАТЫРМАЛАР ТӨМЕНГІ СОЛ ЖАҚТА */
+.slideFooter{
+ flex-shrink:0;
+ display:flex;
+ align-items:center;
+ justify-content:flex-start;
+ gap:20px;
+ padding:11px 20px;
+ border-top:1px solid #4d7390;
+ background:#0c2943;
+}
+.footerBtns{display:flex;gap:9px}
+.footerBtns button{
+ min-width:125px;
+ padding:12px 17px;
+ border-radius:9px;
+ background:#286d9c;
+ color:white;
+ border:1px solid #80b5d7;
+ font-size:18px;
+ font-weight:800;
+}
+.footerBtns button:disabled{opacity:.35}
+#counter{
+ font-size:20px;
+ font-weight:800;
+ color:var(--blue);
+}
+.credit{
+ margin-left:auto;
+ font-size:14px;
+ font-weight:800;
+}
+
+/* КАЛЬКУЛЯТОР */
+#calculator{
+ display:none;
+ position:fixed;
+ z-index:150;
+ left:270px;
+ top:85px;
+ width:245px;
+ max-height:82dvh;
+ overflow:auto;
+ background:#173b59;
+ border:1px solid #80a8c4;
+ border-radius:12px;
+ padding:8px;
+ box-shadow:0 12px 35px #0009;
+}
+#calculator.open{display:block}
+.calcHead{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ background:#3c7092;
+ border-radius:7px;
+ padding:8px;
+ touch-action:none;
+ cursor:move;
+ font-size:12px;
+ font-weight:800;
+}
+.calcHead button{
+ background:#bd4058;
+ color:white;
+ border:0;
+ border-radius:5px;
+ padding:4px 9px;
+}
+#calcInput{
+ width:100%;
+ height:42px;
+ margin:8px 0;
+ background:#081d31;
+ border:1px solid #79a0bc;
+ border-radius:6px;
+ padding:7px;
+ color:white;
+ font-size:18px;
+ text-align:right;
+}
+.calcKeys{
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ gap:5px;
+}
+.calcKeys button{
+ min-height:35px;
+ min-width:0;
+ background:#426f90;
+ color:white;
+ border:0;
+ border-radius:5px;
+ font-size:12px;
+}
+
+/* СЕНСОРЛЫҚ АҚ ТАҚТА */
+#whiteboard{
+ display:none;
+ position:fixed;
+ inset:0;
+ z-index:300;
+ background:white;
+ color:#23465f;
+ flex-direction:column;
+}
+#whiteboard.open{display:flex}
+.boardHeader{
+ flex-shrink:0;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ padding:9px 14px;
+ background:#f3f9fd;
+ border-bottom:1px solid #cfdfe9;
+}
+.boardHeader b{font-size:20px}
+.boardHeader small{
+ display:block;
+ color:#738d9f;
+ font-size:11px;
+}
+.boardHeader button{
+ padding:10px 13px;
+ border:0;
+ border-radius:9px;
+ background:#bd4059;
+ color:white;
+ font-size:13px;
+ font-weight:800;
+}
+#boardArea{
+ position:relative;
+ flex:1;
+ min-height:0;
+ overflow:hidden;
+ background:white;
+}
+#boardCanvas{
+ display:block;
+ width:100%;
+ height:100%;
+ touch-action:none;
+ cursor:crosshair;
+}
+#boardArea.eraserMode #boardCanvas{cursor:none}
+#eraserCursor{
+ display:none;
+ position:absolute;
+ pointer-events:none;
+ z-index:25;
+ left:0;top:0;
+ transform:translate(-50%,-50%);
+ border-radius:50%;
+ background:rgba(42,134,220,.30);
+ border:2px solid rgba(26,100,180,.30);
+}
+#boardStatus{
+ position:absolute;
+ left:10px;
+ bottom:10px;
+ pointer-events:none;
+ padding:6px 11px;
+ background:#fffffff0;
+ border:1px solid #d4e0ea;
+ border-radius:20px;
+ font-size:11px;
+}
+.boardToolbar{
+ flex-shrink:0;
+ background:#f2f8fc;
+ border-top:1px solid #d1e1eb;
+ padding:5px;
+}
+.toolbarRow{
+ display:flex;
+ align-items:center;
+ gap:5px;
+ overflow-x:auto;
+ scrollbar-width:thin;
+ padding:3px 0;
+}
+.toolGroup{
+ display:flex;
+ align-items:center;
+ flex-shrink:0;
+ gap:4px;
+ padding:4px 6px;
+ background:white;
+ border:1px solid #d3e2eb;
+ border-radius:10px;
+}
+.toolGroup label{
+ font-size:10px;
+ font-weight:800;
+ color:#8195a5;
+}
+.tool{
+ min-height:35px;
+ padding:7px 9px;
+ color:#2d536e;
+ background:#eaf3fa;
+ border:0;
+ border-radius:7px;
+ font-size:12px;
+ font-weight:800;
+ white-space:nowrap;
+}
+.tool.active{
+ background:#168bcc;
+ color:white;
+}
+#boardColor{width:36px;height:34px;border:0}
+#boardWidth{width:95px}
+#pageCount,#zoomCount{
+ min-width:45px;
+ font-size:12px;
+ font-weight:800;
+ text-align:center;
+}
+.boardHelp{
+ color:#738a9b;
+ text-align:center;
+ font-size:10px;
+ line-height:1.5;
+}
+#boardFile{display:none}
+#pagesPanel{
+ display:none;
+ position:absolute;
+ z-index:30;
+ right:12px;
+ top:12px;
+ width:230px;
+ max-height:70%;
+ overflow:auto;
+ padding:12px;
+ background:#f9fcff;
+ border:1px solid #d3e0ea;
+ border-radius:12px;
+ box-shadow:0 10px 30px #0003;
+}
+#pagesPanel.open{display:block}
+#pagesPanel button{
+ display:block;
+ width:100%;
+ margin:6px 0;
+ padding:9px;
+ text-align:left;
+ color:#2b526b;
+ background:white;
+ border:1px solid #d4e2eb;
+ border-radius:7px;
+}
+#pagesPanel button.active{background:#dcefff}
+.instrument{
+ display:none;
+ position:absolute;
+ z-index:15;
+ pointer-events:none;
+ user-select:none;
+ touch-action:none;
+ transform:translate(-50%,-50%)
+ rotate(var(--rot,0deg))
+ scale(var(--scale,1));
+ transform-origin:center;
+ filter:drop-shadow(0 4px 8px #0003);
+}
+.instrument.visible{display:block}
+.instrument svg{pointer-events:none;display:block}
+.instControls{
+ position:absolute;
+ top:-43px;
+ left:50%;
+ transform:translateX(-50%);
+ display:flex;
+ gap:3px;
+ pointer-events:auto;
+ white-space:nowrap;
+}
+.instControls button{
+ padding:6px 8px;
+ pointer-events:auto;
+ color:white;
+ background:#295978;
+ border:0;
+ border-radius:5px;
+ font-size:11px;
+ font-weight:800;
+}
+.instControls .drag{
+ touch-action:none;
+ cursor:grab;
+ background:#168ac9;
+}
+.instControls .close{background:#bd4059}
+
+@media(max-width:1050px){
+ #app{grid-template-columns:180px minmax(0,1fr)}
+ aside{padding:7px}
+ .sideBtn{font-size:12px;padding:9px}
+ .sideTool{font-size:11px}
+ .badge{display:none}
+ .grid2{grid-template-columns:1fr}
+ #calculator{left:185px}
+}
+@media(max-width:650px){
+ #app{
+  grid-template-columns:120px minmax(0,1fr);
+  grid-template-rows:65px minmax(0,1fr);
+ }
+ header{padding:6px}
+ .logo{font-size:16px}
+ .subtitle{display:none}
+ .topTools button{font-size:11px;padding:7px}
+ aside{padding:4px}
+ .sideTitle{font-size:10px}
+ .sideBtn,.sideTool{font-size:10px;padding:8px 5px}
+ #slideView{padding:24px 10px 18px}
+ h1{font-size:27px}
+ .lead{font-size:19px}
+ .card{padding:14px}
+ .card h3{font-size:22px}
+ .card p{font-size:18px}
+ .step{font-size:18px}
+ .formula{font-size:24px}
+ .slideFooter{padding:7px;gap:7px}
+ .footerBtns{gap:4px}
+ .footerBtns button{
+  min-width:auto;
+  padding:8px;
+  font-size:11px;
+ }
+ #counter{font-size:12px}
+ .credit{display:none}
+ .scoreGrid{grid-template-columns:1fr}
+ .choice{font-size:19px}
+ #calculator{left:5px}
+ .boardHeader b{font-size:13px}
+ .boardHeader button{font-size:10px}
+}
+</style>
+</head>
+
+<body>
+<div id="app">
+<header>
+ <div>
+  <div class="logo">MATH LAB <span>PRO</span></div>
+  <div class="subtitle">
+   §7. Екі жазықтықтың өзара орналасуы · Геометрия
+  </div>
+ </div>
+ <div class="topTools">
+  <span class="badge">80 МИНУТ</span>
+  <span class="badge">⭐ <span id="stars">0</span></span>
+  <button onclick="openBoard()">✎ Тақта</button>
+  <button onclick="toggleFullscreen()">⛶</button>
+ </div>
+</header>
+
+<aside>
+ <div class="sideTitle">САБАҚ БӨЛІМДЕРІ</div>
+ <div id="sectionButtons"></div>
+
+ <div class="sideBottom">
+  <div class="sideTitle">ҚҰРАЛДАР</div>
+
+  <button class="sideTool" onclick="openCalc(false)">
+   🧮 Калькулятор
+  </button>
+  <button class="sideTool" onclick="openCalc(true)">
+   ∑ Ғылыми калькулятор
+  </button>
+  <button class="sideTool" onclick="openBoard()">
+   ✎ Интерактивті тақта
+  </button>
+
+  <div class="timeBox">
+   <div class="timeRow">
+    <span>Алматы уақыты</span><b id="clock"></b>
+   </div>
+   <div class="timeRow">
+    <span>Қалған уақыт</span><b id="remaining">80:00</b>
+   </div>
+   <div class="timeRow">
+    <span>Өткен уақыт</span><b id="elapsed">00:00</b>
+   </div>
+   <div class="timeBtns">
+    <button onclick="startTimer()">▶</button>
+    <button onclick="pauseTimer()">Ⅱ</button>
+    <button onclick="resetTimer()">↻</button>
+   </div>
+  </div>
+ </div>
+</aside>
+
+<main>
+ <div id="slideView">
+  <div class="slide" id="slideContent"></div>
+ </div>
+ <div class="slideFooter">
+  <div class="footerBtns">
+   <button id="prevBtn" onclick="previousSlide()">← Артқа</button>
+   <button id="nextBtn" onclick="nextSlide()">Келесі →</button>
+  </div>
+  <span id="counter">1 / 37</span>
+  <span class="credit">BY DARKHAN</span>
+ </div>
+</main>
+</div>
+
+<!-- КАЛЬКУЛЯТОР -->
+<div id="calculator">
+ <div class="calcHead" id="calcHandle">
+  <span id="calcTitle">Калькулятор</span>
+  <button onclick="closeCalc()">✕</button>
+ </div>
+ <input id="calcInput" placeholder="0">
+ <div class="calcKeys" id="calcKeys"></div>
+</div>
+
+<!-- ИНТЕРАКТИВТІ АҚ ТАҚТА -->
+<div id="whiteboard">
+ <div class="boardHeader">
+  <div>
+   <b>MATH LAB WHITEBOARD</b>
+   <small>Саусақпен жазу · Сызу · Өшіру · Геометрия</small>
+  </div>
+  <button onclick="closeBoard()">✕ Сабаққа қайту</button>
+ </div>
+
+ <div id="boardArea">
+  <canvas id="boardCanvas"></canvas>
+  <div id="eraserCursor"></div>
+  <div id="boardStatus">Қалам · 100%</div>
+  <div id="pagesPanel">
+   <b>Тақта беттері</b>
+   <div id="pagesList"></div>
+  </div>
+
+  <!-- СЫЗҒЫШ -->
+  <div class="instrument" id="ruler">
+   <div class="instControls">
+    <button class="drag">⠿ Жылжыту</button>
+    <button onclick="resizeInstrument('ruler',.8)">−</button>
+    <button onclick="resizeInstrument('ruler',1.25)">+</button>
+    <button onclick="rotateInstrument('ruler',-15)">↶</button>
+    <button onclick="rotateInstrument('ruler',15)">↷</button>
+    <button class="close" onclick="hideInstrument('ruler')">✕</button>
+   </div>
+   <svg id="rulerSVG" width="420" height="90"
+    viewBox="0 0 420 90"></svg>
+  </div>
+
+  <!-- ТРАНСПОРТИР -->
+  <div class="instrument" id="protractor">
+   <div class="instControls">
+    <button class="drag">⠿ Жылжыту</button>
+    <button onclick="resizeInstrument('protractor',.8)">−</button>
+    <button onclick="resizeInstrument('protractor',1.25)">+</button>
+    <button onclick="rotateInstrument('protractor',-15)">↶</button>
+    <button onclick="rotateInstrument('protractor',15)">↷</button>
+    <button class="close" onclick="hideInstrument('protractor')">✕</button>
+   </div>
+   <svg id="protractorSVG" width="380" height="210"
+    viewBox="0 0 380 210"></svg>
+  </div>
+
+  <!-- ҮШБҰРЫШ -->
+  <div class="instrument" id="square">
+   <div class="instControls">
+    <button class="drag">⠿ Жылжыту</button>
+    <button onclick="resizeInstrument('square',.8)">−</button>
+    <button onclick="resizeInstrument('square',1.25)">+</button>
+    <button onclick="rotateInstrument('square',-15)">↶</button>
+    <button onclick="rotateInstrument('square',15)">↷</button>
+    <button class="close" onclick="hideInstrument('square')">✕</button>
+   </div>
+   <svg width="290" height="290" viewBox="0 0 290 290">
+    <path d="M18 18L18 274L274 274Z M75 75L75 224L224 224Z"
+     fill="#8cc9ed" fill-opacity=".45"
+     fill-rule="evenodd" stroke="#287fab" stroke-width="4"/>
+    <text x="28" y="250" fill="#185779" font-size="17">90°</text>
+   </svg>
+  </div>
+ </div>
+
+ <div class="boardToolbar">
+  <div class="toolbarRow">
+   <div class="toolGroup">
+    <label>БЕТТЕР</label>
+    <button class="tool" onclick="prevBoardPage()">◀</button>
+    <span id="pageCount">1 / 1</span>
+    <button class="tool" onclick="nextBoardPage()">▶</button>
+    <button class="tool" onclick="addBoardPage()">+ Бет</button>
+    <button class="tool" onclick="togglePages()">▦ Беттер</button>
+    <button class="tool" onclick="deleteBoardPage()">Өшіру</button>
+   </div>
+
+   <div class="toolGroup">
+    <label>ЖАЗУ</label>
+    <button class="tool" data-tool="hand"
+      onclick="selectTool('hand')">✋ Қол</button>
+    <button class="tool active" data-tool="pen"
+      onclick="selectTool('pen')">✎ Қалам</button>
+    <button class="tool" data-tool="highlighter"
+      onclick="selectTool('highlighter')">🖍 Бояу</button>
+    <button class="tool" data-tool="eraser"
+      onclick="selectTool('eraser')">◯ Өшіргіш</button>
+    <button class="tool" data-tool="text"
+      onclick="selectTool('text')">T Мәтін</button>
+   </div>
+
+   <div class="toolGroup">
+    <label>ФИГУРАЛАР</label>
+    <button class="tool" data-tool="line"
+      onclick="selectTool('line')">╱ Түзу</button>
+    <button class="tool" data-tool="arrow"
+      onclick="selectTool('arrow')">➜</button>
+    <button class="tool" data-tool="rect"
+      onclick="selectTool('rect')">▭</button>
+    <button class="tool" data-tool="circle"
+      onclick="selectTool('circle')">◯</button>
+    <button class="tool" data-tool="triangle"
+      onclick="selectTool('triangle')">△</button>
+    <button class="tool" data-tool="table"
+      onclick="selectTool('table')">▦</button>
+    <button class="tool" data-tool="angle"
+      onclick="selectTool('angle')">∠</button>
+   </div>
+  </div>
+
+  <div class="toolbarRow">
+   <div class="toolGroup">
+    <label>ГЕОМЕТРИЯ</label>
+    <button class="tool" data-tool="compass"
+      onclick="selectTool('compass')">◉ Циркуль</button>
+    <button class="tool" onclick="toggleInstrument('ruler')">📏 Сызғыш</button>
+    <button class="tool" onclick="toggleInstrument('protractor')">◠ Транспортир</button>
+    <button class="tool" onclick="toggleInstrument('square')">📐 Үшбұрыш</button>
+    <button class="tool" onclick="toggleGrid()">⊞ Тор</button>
+   </div>
+
+   <div class="toolGroup">
+    <label>ТҮС / ӨЛШЕМ</label>
+    <input id="boardColor" type="color" value="#1979cc">
+    <input id="boardWidth" type="range" min="1" max="25" value="5">
+   </div>
+
+   <div class="toolGroup">
+    <label>БАСҚАРУ</label>
+    <button class="tool" onclick="undoBoard()">↶</button>
+    <button class="tool" onclick="redoBoard()">↷</button>
+    <button class="tool" onclick="zoomBoard(.8)">−</button>
+    <span id="zoomCount">100%</span>
+    <button class="tool" onclick="zoomBoard(1.25)">+</button>
+    <button class="tool" onclick="resetBoardView()">⌖</button>
+    <button class="tool" onclick="clearBoard()">Тазалау</button>
+    <button class="tool" onclick="document.getElementById('boardFile').click()">+ Сурет</button>
+    <button class="tool" onclick="exportBoard()">↓ PNG</button>
+    <input id="boardFile" type="file" accept="image/*">
+   </div>
+  </div>
+
+  <div class="boardHelp">
+   Саусақ және интерактивті қалам қолданылады.
+   Өшіргіш толық өшіреді, көрсеткішінің мөлдірлігі 70%.
+  </div>
+ </div>
+</div>
+
+<script>
+"use strict";
+
+/* ==========================================
+   1. ЕКІ ЖАЗЫҚТЫҚТЫҢ SVG СЫЗБАЛАРЫ
+========================================== */
+
+function diagram(type){
+ const base=`
+  <polygon points="65,215 165,130 374,130 272,215"
+    fill="#72ccff" fill-opacity=".33"
+    stroke="#b3ebff" stroke-width="4"/>
+  <text x="327" y="169" fill="#bcefff" font-size="26">α</text>
+ `;
+
+ let shape="";
+
+ if(type==="parallel"){
+  shape=base+`
+   <polygon points="65,100 165,15 374,15 272,100"
+    fill="#ac99f1" fill-opacity=".4"
+    stroke="#d6c7ff" stroke-width="4"/>
+   <text x="328" y="55" fill="#e0ceff" font-size="24">β</text>
+   <path d="M100 103V215 M339 101V214"
+    stroke="#ffe18e" stroke-width="3"
+    stroke-dasharray="8 7"/>`;
+ }
+
+ if(type==="intersect"){
+  shape=base+`
+   <polygon points="185,37 286,37 286,279 185,279"
+    fill="#b29cf2" fill-opacity=".43"
+    stroke="#dbcaff" stroke-width="4"/>
+   <path d="M185 163L286 163"
+    stroke="#ffe18e" stroke-width="6"/>
+   <text x="290" y="75" fill="#dbcaff" font-size="25">β</text>
+   <text x="222" y="153" fill="#ffe18e" font-size="23">a</text>`;
+ }
+
+ if(type==="perpendicular"){
+  shape=base+`
+   <polygon points="185,40 286,40 286,280 185,280"
+    fill="#b09af0" fill-opacity=".44"
+    stroke="#dbcaff" stroke-width="4"/>
+   <path d="M185 165H286"
+    stroke="#ffe18e" stroke-width="6"/>
+   <path d="M235 145V165H255"
+    fill="none" stroke="#8bf0bd" stroke-width="4"/>
+   <text x="259" y="146" fill="#8bf0bd" font-size="22">90°</text>`;
+ }
+
+ if(type==="coincident"){
+  shape=`
+   <polygon points="65,215 165,130 374,130 272,215"
+    fill="#91b4f7" fill-opacity=".53"
+    stroke="#c5eaff" stroke-width="4"/>
+   <text x="180" y="174" fill="#ffe18e"
+    font-size="26">α = β</text>`;
+ }
+
+ if(type==="dihedral"){
+  shape=`
+   <polygon points="214,165 70,260 320,260 371,165"
+    fill="#72ccff" fill-opacity=".36"
+    stroke="#a9e6ff" stroke-width="4"/>
+   <polygon points="214,165 125,48 285,48 371,165"
+    fill="#b39cf2" fill-opacity=".47"
+    stroke="#d9c7ff" stroke-width="4"/>
+   <path d="M214 165L371 165"
+    stroke="#ffe18e" stroke-width="6"/>
+   <path d="M285 165L285 92 M285 165L260 206"
+    stroke="#89f1bd" stroke-width="4"/>
+   <text x="299" y="190" fill="#89f1bd" font-size="24">φ</text>`;
+ }
+
+ if(type==="distance"){
+  shape=`
+   <polygon points="65,245 165,170 374,170 272,245"
+    fill="#72ccff" fill-opacity=".36"
+    stroke="#b7edff" stroke-width="4"/>
+   <polygon points="65,103 165,28 374,28 272,103"
+    fill="#ae99ef" fill-opacity=".42"
+    stroke="#d8c5ff" stroke-width="4"/>
+   <path d="M215 65V206"
+    stroke="#ffe18e" stroke-width="5"
+    stroke-dasharray="8 6"/>
+   <path d="M215 186H235V206"
+    stroke="#8cf2bd" stroke-width="4" fill="none"/>
+   <text x="228" y="140" fill="#ffe18e" font-size="24">h</text>`;
+ }
+
+ if(type==="transversal"){
+  shape=`
+   <polygon points="65,103 165,28 374,28 272,103"
+    fill="#ae99ef" fill-opacity=".42"
+    stroke="#d8c5ff" stroke-width="4"/>
+   <polygon points="65,245 165,170 374,170 272,245"
+    fill="#72ccff" fill-opacity=".36"
+    stroke="#b7edff" stroke-width="4"/>
+   <path d="M213 10L250 300"
+    stroke="#ffe18e" stroke-width="6"/>
+   <circle cx="221" cy="71" r="7" fill="#8cf2bd"/>
+   <circle cx="239" cy="214" r="7" fill="#8cf2bd"/>`;
+ }
+
+ if(type==="normal"){
+  shape=base+`
+   <path d="M212 34V285"
+    stroke="#ffe18e" stroke-width="6"/>
+   <path d="M212 147H237V172"
+    fill="none" stroke="#8cf2bd" stroke-width="4"/>
+   <text x="222" y="42" fill="#ffe18e" font-size="24">n</text>`;
+ }
+
+ if(type==="prism"){
+  shape=`
+   <polygon points="110,101 275,101 275,256 110,256"
+    fill="#71cbfa" fill-opacity=".32"/>
+   <polygon points="110,101 175,43 340,43 275,101"
+    fill="#b39bf0" fill-opacity=".47"/>
+   <polygon points="275,101 340,43 340,198 275,256"
+    fill="#70c7f9" fill-opacity=".28"/>
+   <path d="M110 101L175 43H340L275 101H110V256H275
+     V101M275 256L340 198V43"
+    stroke="#bdeaff" fill="none" stroke-width="4"/>
+   <path d="M110 256L175 198L340 198M175 43V198"
+    stroke="#bdeaff" fill="none"
+    stroke-width="3" stroke-dasharray="7 6"/>
+   <text x="211" y="68" fill="#ffe18e" font-size="24">β</text>
+   <text x="211" y="271" fill="#ffe18e" font-size="24">α</text>`;
+ }
+
+ return `<svg viewBox="0 0 440 330"
+ xmlns="http://www.w3.org/2000/svg"
+ role="img" aria-label="Екі жазықтықтың геометриялық сызбасы">
+ ${shape}
+ </svg>`;
+}
+
+function picture(type,label){
+ return `<figure class="figure">
+  ${diagram(type)}
+  <figcaption>${label}</figcaption>
+ </figure>`;
+}
+
+/* ==========================================
+   2. 37 САБАҚ БЕТІН ҚҰРУ
+========================================== */
+
+const slides=[];
+
+function add(section,title,html){
+ slides.push({section,title,html});
+}
+
+function card(title,html){
+ return `<div class="card">
+ <h3>${title}</h3>${html}
+ </div>`;
+}
+
+function steps(arr){
+ return arr.map((x,i)=>`
+ <div class="step">
+ <strong>${i+1}-қадам.</strong> ${x}
+ </div>`).join("");
+}
+
+function solution(title,arr){
+ return `<details>
+  <summary>${title} — шешімін көру</summary>
+  ${steps(arr)}
+ </details>`;
+}
+
+function example(title,given,arr,fig){
+ return card(title,`
+  ${picture(fig,"Есептің сызбасы")}
+  <p><strong>Берілгені:</strong> ${given}</p>
+  ${steps(arr)}
+ `);
+}
+
+/* КІРІСПЕ — 1 БЕТ */
+
+add("intro","§7. Екі жазықтықтың өзара орналасуы",`
+ <p class="lead">
+  Кеңістікте екі жазықтық параллель,
+  қиылысатын немесе беттесетін болуы мүмкін.
+  Егер екі жазықтық қиылысса, олардың
+  ортақ бөлігі түзу болады.
+  Перпендикуляр жазықтықтар — қиылысатын
+  жазықтықтардың ерекше жағдайы.
+ </p>
+
+ <div class="grid2">
+  ${picture("parallel","Параллель жазықтықтар")}
+  ${picture("intersect","Қиылысатын жазықтықтар")}
+  ${picture("perpendicular","Перпендикуляр жазықтықтар")}
+  ${picture("coincident","Беттесетін жазықтықтар")}
+ </div>
+
+ ${card("Сабақ мақсаттары",`
+  <p>1. Екі жазықтықтың өзара орналасуын ажырату.</p>
+  <p>2. Параллельдік белгілерін түсіну.</p>
+  <p>3. Қиылысу түзуін анықтау.</p>
+  <p>4. Екіжақты бұрышты есептеу.</p>
+  <p>5. Параллель жазықтықтардың арақашықтығын табу.</p>
+ `)}
+
+ <div class="formula">α ∥ β</div>
+ <div class="formula">α ⟂ β</div>
+`);
+
+/* 9 ТҮСІНДІРМЕ */
+
+const theory=[
+ {
+  title:"7.1. Екі жазықтықтың орналасуы",
+  fig:"intersect",
+  text:"Кеңістікте екі жазықтықтың үш негізгі жағдайы бар: параллель, қиылысатын немесе беттесетін.",
+  points:[
+   "Екі параллель әртүрлі жазықтықтың ортақ нүктелері болмайды.",
+   "Екі қиылысатын жазықтықтың ортақ нүктелері бір түзудің бойында жатады.",
+   "Беттесетін жазықтықтар — бір ғана жазықтықтың екі белгіленуі.",
+   "Перпендикуляр жазықтықтар қиылысатын жазықтықтарға жатады."
+  ]
+ },
+ {
+  title:"7.2. Параллель жазықтықтар",
+  fig:"parallel",
+  text:"Екі әртүрлі жазықтық қиылыспаса, олар параллель деп аталады.",
+  points:[
+   "Белгіленуі: α ∥ β.",
+   "Параллель жазықтықтардың ортақ нүктелері жоқ.",
+   "Олардың арақашықтығы барлық жерде бірдей.",
+   "Мысалы, тікбұрышты параллелепипедтің қарама-қарсы жақтары параллель."
+  ]
+ },
+ {
+  title:"7.3. Жазықтықтардың параллельдік белгісі",
+  fig:"parallel",
+  text:"Бір жазықтықтағы қиылысатын екі түзу екінші жазықтықтағы сәйкес екі қиылысатын түзуге параллель болса, жазықтықтар параллель болады.",
+  points:[
+   "Бірінші жазықтықта өзара қиылысатын a және b түзулері алынады.",
+   "Екінші жазықтықта өзара қиылысатын c және d түзулері алынады.",
+   "Егер a ∥ c және b ∥ d болса, жазықтықтар параллель.",
+   "Бұл белгі геометриялық дәлелдеулерде пайдаланылады."
+  ]
+ },
+ {
+  title:"7.4. Қиылысатын жазықтықтар",
+  fig:"intersect",
+  text:"Екі әртүрлі жазықтықтың ортақ нүктесі болса, олар сол нүкте арқылы өтетін бір түзу бойымен қиылысады.",
+  points:[
+   "Белгіленуі: α ∩ β = a.",
+   "a — екі жазықтықтың қиылысу түзуі.",
+   "Қиылысу түзуіне тиісті әр нүкте екі жазықтыққа да тиісті.",
+   "Кітаптың ашық тұрған екі беті қиылысатын жазықтықтарға ұқсайды."
+  ]
+ },
+ {
+  title:"7.5. Перпендикуляр жазықтықтар",
+  fig:"perpendicular",
+  text:"Екі жазықтықтың арасындағы бұрыш 90° болса, олар перпендикуляр жазықтықтар деп аталады.",
+  points:[
+   "Белгіленуі: α ⟂ β.",
+   "Перпендикуляр жазықтықтар бір түзу бойымен қиылысады.",
+   "Олардың арасындағы бұрыш 90°.",
+   "Мысалы, бөлменің едені мен тік қабырғасы перпендикуляр болуы мүмкін."
+  ]
+ },
+ {
+  title:"7.6. Екіжақты бұрыш",
+  fig:"dihedral",
+  text:"Бір түзу бойымен қиылысатын екі жартыжазықтықтан құралған фигура екіжақты бұрыш деп аталады.",
+  points:[
+   "Қиылысу түзуі — екіжақты бұрыштың қыры.",
+   "Екі жартыжазықтық — оның жақтары.",
+   "Жазықтықтар арасындағы кіші бұрыш 0° пен 90° аралығында алынады.",
+   "Бұрышты қима арқылы жазық бұрышқа келтіріп өлшейді."
+  ]
+ },
+ {
+  title:"7.7. Жазықтықтар арасындағы бұрыш",
+  fig:"dihedral",
+  text:"Қиылысатын екі жазықтық арасындағы бұрыш олардың нормаль векторлары арасындағы сүйір немесе тік бұрышпен анықталады.",
+  points:[
+   "Бұрышты φ арқылы белгілейміз.",
+   "Параллель жазықтықтар үшін φ = 0°.",
+   "Перпендикуляр жазықтықтар үшін φ = 90°.",
+   "Есептерде синус, косинус және тангенс қолданылуы мүмкін."
+  ]
+ },
+ {
+  title:"7.8. Параллель жазықтықтардың арақашықтығы",
+  fig:"distance",
+  text:"Екі параллель жазықтықтың арақашықтығы — олардың біріндегі кез келген нүктеден екіншісіне түсірілген перпендикуляр ұзындығы.",
+  points:[
+   "Арақашықтық ең қысқа перпендикуляр кесінді арқылы өлшенеді.",
+   "Барлық сәйкес перпендикуляр кесінділердің ұзындықтары тең.",
+   "Арақашықтықты h немесе d арқылы белгілеуге болады.",
+   "Пифагор теоремасы көлбеу кесінді берілгенде көмектеседі."
+  ]
+ },
+ {
+  title:"7.9. Жазықтықтардың өмірдегі қолданылуы",
+  fig:"prism",
+  text:"Параллель және перпендикуляр жазықтықтар құрылыста, архитектурада, инженерияда және компьютерлік модельдеуде жиі кездеседі.",
+  points:[
+   "Үстелдің үстіңгі және астыңғы жазық беттері параллель болуы мүмкін.",
+   "Еден мен қабырға көбіне перпендикуляр етіп жасалады.",
+   "Кубтың қарама-қарсы жақтары параллель.",
+   "Кубтың көршілес жақтары перпендикуляр.",
+   "Үшөлшемді модельдерде жазықтықтардың өзара орналасуы маңызды."
+  ]
+ }
+];
+
+theory.forEach(t=>add("theory",t.title,`
+ <p class="lead">${t.text}</p>
+ ${picture(t.fig,t.title)}
+ ${card("Толық түсіндірме",
+  t.points.map(x=>`<p>✦ ${x}</p>`).join("")
+ )}
+ <button class="action" onclick="openBoard()">✎ Тақтада көрсету</button>
+`));
+
+/* КОНСПЕКТ — 4 ТОП × 3 БЕТ */
+
+const topics=[
+ {
+  title:"Параллель және қиылысатын жазықтықтар",
+  fig:"parallel",
+  notes:[
+   "α ∥ β — параллель жазықтықтар.",
+   "α ∩ β = a — қиылысу түзуі a.",
+   "Параллель әртүрлі жазықтықтардың ортақ нүктесі жоқ.",
+   "Қиылысатын жазықтықтардың ортақ нүктелері бір түзуде жатады.",
+   "Беттесетін жазықтықтардың барлық нүктелері ортақ."
+  ],
+  examples:[
+   ["Кубтың қарама-қарсы жақтары",
+    "Кубтың жоғарғы және төменгі жақтары.",
+    [
+     "Екі жақ әртүрлі жазықтықта жатыр.",
+     "Олардың сәйкес қырлары параллель.",
+     "Бұл жазықтықтар қиылыспайды.",
+     "Жауабы: параллель."
+    ]],
+   ["Кубтың көршілес жақтары",
+    "Кубтың екі көршілес жағы.",
+    [
+     "Көршілес жақтардың ортақ қыры бар.",
+     "Олар сол қыр бойымен қиылысады.",
+     "Кубта екі көршілес жақ перпендикуляр.",
+     "Жауабы: 90°."
+    ]]
+  ],
+  tasks:[
+   ["Екі әртүрлі жазықтықтың ортақ нүктелері жоқ. Қалай орналасқан?",[
+    "Ортақ нүкте жоқ.",
+    "Жауабы: параллель."
+   ]],
+   ["Екі жазықтықтың ортақ екі әртүрлі нүктесі бар. Егер жазықтықтар беттеспесе, олардың қиылысуы қандай?",[
+    "Екі нүкте арқылы түзу жүргізіледі.",
+    "Екі әртүрлі жазықтық сол түзу бойымен қиылысады.",
+    "Жауабы: түзу."
+   ]]
+  ]
+ },
+ {
+  title:"Перпендикулярлық және екіжақты бұрыш",
+  fig:"perpendicular",
+  notes:[
+   "α ⟂ β — перпендикуляр жазықтықтар.",
+   "Перпендикуляр жазықтықтардың арасындағы бұрыш 90°.",
+   "Қиылысатын жазықтықтар екіжақты бұрыштар түзеді.",
+   "Екіжақты бұрыштың қыры — ортақ түзу.",
+   "Жазықтықтар арасындағы кіші бұрыш 0°–90° аралығында."
+  ],
+  examples:[
+   ["Перпендикуляр жазықтықтар",
+    "α ⟂ β.",
+    [
+     "Белгі перпендикулярлықты көрсетеді.",
+     "Екі жазықтықтың арасындағы бұрыш 90°.",
+     "Жауабы: 90°."
+    ]],
+   ["Бұрыштарды салыстыру",
+    "Бір жұп жазықтықтың бұрышы 40°, екінші жұптың бұрышы 70°.",
+    [
+     "Бірінші бұрыш 40°.",
+     "Екінші бұрыш 70°.",
+     "Айырмасы: 70° − 40°.",
+     "Жауабы: 30°."
+    ]]
+  ],
+  tasks:[
+   ["Екі жазықтық арасындағы бұрыш 90°. Қандай жазықтықтар?",[
+    "90° — тік бұрыш.",
+    "Жауабы: перпендикуляр жазықтықтар."
+   ]],
+   ["Екі жазықтықтың арасындағы бұрыш 35°. Толықтауыш бұрыш қанша?",[
+    "90° − 35° = 55°.",
+    "Жауабы: 55°."
+   ]]
+  ]
+ },
+ {
+  title:"Параллель жазықтықтардың арақашықтығы",
+  fig:"distance",
+  notes:[
+   "Қашықтық — бір жазықтықтағы нүктеден екіншісіне түсірілген перпендикуляр.",
+   "Параллель жазықтықтардың арақашықтығы тұрақты.",
+   "Көлбеу кесінді ұзындығын l деп белгілейміз.",
+   "Перпендикуляр h, проекция p болса: l² = h² + p².",
+   "h = √(l² − p²)."
+  ],
+  examples:[
+   ["Перпендикуляр ұзындығы",
+    "Көлбеу 17 см, проекция 8 см.",
+    [
+     "h² = 17² − 8².",
+     "h² = 289 − 64.",
+     "h² = 225.",
+     "Жауабы: h = 15 см."
+    ]],
+   ["Екінші мысал",
+    "Көлбеу 25 см, проекция 24 см.",
+    [
+     "h² = 25² − 24².",
+     "h² = 625 − 576 = 49.",
+     "Жауабы: h = 7 см."
+    ]]
+  ],
+  tasks:[
+   ["Көлбеу 29 см, проекция 21 см. Арақашықтықты табыңдар.",[
+    "h² = 29² − 21².",
+    "h² = 841 − 441 = 400.",
+    "Жауабы: h = 20 см."
+   ]],
+   ["Екі параллель жазықтықтың арақашықтығы 12 см. Проекция ұзындығы 16 см болса, көлбеу қанша?",[
+    "l² = 12² + 16².",
+    "l² = 400.",
+    "Жауабы: l = 20 см."
+   ]]
+  ]
+ },
+ {
+  title:"Жазықтықтар арасындағы бұрышты есептеу",
+  fig:"dihedral",
+  notes:[
+   "Жазықтықтар арасындағы бұрышты φ деп белгілейміз.",
+   "Тікбұрышты үшбұрышта sin φ = қарсы катет ÷ гипотенуза.",
+   "cos φ = іргелес катет ÷ гипотенуза.",
+   "tan φ = қарсы катет ÷ іргелес катет.",
+   "sin 30° = 1/2.",
+   "cos 60° = 1/2.",
+   "tan 45° = 1."
+  ],
+  examples:[
+   ["30° бұрыш",
+    "Гипотенуза 20 см, қарсы катетті табыңдар.",
+    [
+     "sin 30° = h ÷ 20.",
+     "1/2 = h ÷ 20.",
+     "h = 20 × 1/2.",
+     "Жауабы: 10 см."
+    ]],
+   ["45° бұрыш",
+    "Қарсы катет 9 см, іргелес катетті табыңдар.",
+    [
+     "tan 45° = 9 ÷ p.",
+     "1 = 9 ÷ p.",
+     "Жауабы: p = 9 см."
+    ]]
+  ],
+  tasks:[
+   ["Гипотенуза 18 см, бұрыш 30°. Қарсы катет қанша?",[
+    "h = 18 sin 30°.",
+    "h = 18 × 1/2.",
+    "Жауабы: 9 см."
+   ]],
+   ["Гипотенуза 24 см, бұрыш 60°. Іргелес катетті табыңдар.",[
+    "p = 24 cos 60°.",
+    "p = 24 × 1/2.",
+    "Жауабы: 12 см."
+   ]]
+  ]
+ }
+];
+
+topics.forEach((t,i)=>{
+ const note=t.notes.map(x=>`<p>✦ ${x}</p>`).join("");
+
+ const tasks=t.tasks.map((x,j)=>solution(
+  (j+1)+"-өзіндік есеп. "+x[0],x[1]
+ )).join("");
+
+ add("notes","Конспект "+(i+1)+". "+t.title,`
+  <span class="tag">ДӘПТЕРГЕ ЖАЗЫП АЛЫҢДАР</span>
+  ${picture(t.fig,t.title)}
+  ${card("Негізгі анықтамалар",note)}
+  ${card("Өзіндік жұмыс",tasks)}
+ `);
+
+ add("notes","Конспект "+(i+1)+". Мысалдар",`
+  <p class="lead">
+   Берілген шамаларды анықтап, формуласын жазыңдар.
+   Әр қадамды дәптерге түсіріңдер.
+  </p>
+  ${t.examples.map(e=>example(e[0],e[1],e[2],t.fig)).join("")}
+ `);
+
+ add("notes","Конспект "+(i+1)+". Бекіту",`
+  ${picture(t.fig,"Бекітуге арналған сызба")}
+  ${card("Ережелерді қайталау",note)}
+  ${card("Екі өзіндік есеп",tasks)}
+  <button class="action" onclick="openBoard()">
+   ✎ Тақтада шығару
+  </button>
+ `);
+});
+
+/* 4 ДЕҢГЕЙ — 8 ЕСЕП */
+
+const levels=[
+ ["I деңгей",
+  "α және β жазықтықтарының ортақ нүктелері жоқ. Олардың орналасуын анықтаңдар.",
+  [
+   "Жазықтықтар әртүрлі.",
+   "Ортақ нүктелері жоқ.",
+   "Жауабы: α ∥ β."
+  ],"parallel"],
+
+ ["I деңгей",
+  "α және β жазықтықтары бір түзу бойымен қиылысады. Қиылысу фигурасы қандай?",
+  [
+   "Екі жазықтықтың ортақ бөлігі түзу.",
+   "Белгіленуі: α ∩ β = a.",
+   "Жауабы: түзу."
+  ],"intersect"],
+
+ ["II деңгей",
+  "Екі параллель жазықтықтың арақашықтығы 9 см, көлбеудің проекциясы 12 см. Көлбеуді табыңдар.",
+  [
+   "l² = h² + p².",
+   "l² = 9² + 12².",
+   "l² = 81 + 144 = 225.",
+   "Жауабы: l = 15 см."
+  ],"distance"],
+
+ ["II деңгей",
+  "Екі жазықтықтың арасындағы бұрыш 90°. Олардың өзара орналасуын атаңдар.",
+  [
+   "Бұрыш 90°.",
+   "Бұл — перпендикулярлық белгісі.",
+   "Жауабы: α ⟂ β."
+  ],"perpendicular"],
+
+ ["III деңгей",
+  "Көлбеу кесінді ұзындығы 34 см, проекциясы 16 см. Параллель жазықтықтардың арақашықтығын табыңдар.",
+  [
+   "h² = 34² − 16².",
+   "h² = 1156 − 256.",
+   "h² = 900.",
+   "Жауабы: h = 30 см."
+  ],"distance"],
+
+ ["III деңгей",
+  "Екіжақты бұрыштың өлшемі 60°. Гипотенуза 28 см болатын сәйкес тікбұрышты үшбұрыштың іргелес катетін табыңдар.",
+  [
+   "cos 60° = p ÷ 28.",
+   "1/2 = p ÷ 28.",
+   "p = 28 × 1/2.",
+   "Жауабы: 14 см."
+  ],"dihedral"],
+
+ ["IV деңгей",
+  "Екі параллель жазықтықтың арақашықтығы 24 см. Оларды қосатын көлбеу кесіндінің ұзындығы 30 см. Проекциясын табыңдар.",
+  [
+   "p² = l² − h².",
+   "p² = 30² − 24².",
+   "p² = 900 − 576.",
+   "p² = 324.",
+   "Жауабы: p = 18 см."
+  ],"distance"],
+
+ ["IV деңгей",
+  "Бір тікбұрышты қимада екіжақты бұрыш 30°. Оған қарсы катет 12 см. Гипотенузаны және іргелес катетті табыңдар.",
+  [
+   "sin 30° = 12 ÷ l.",
+   "1/2 = 12 ÷ l.",
+   "l = 24 см.",
+   "p² = 24² − 12² = 432.",
+   "p = √432 = 12√3 см.",
+   "Жауабы: l = 24 см, p = 12√3 см."
+  ],"dihedral"]
+];
+
+levels.forEach((t,i)=>add("tasks",t[0]+" · "+(i+1)+"-есеп",`
+ <span class="tag">4 ДЕҢГЕЙЛІ ТАПСЫРМА</span>
+
+ ${card("Есептің шарты",`
+  <p class="lead">${t[1]}</p>
+ `)}
+
+ ${picture(t[3],"Есептің геометриялық сызбасы")}
+
+ ${card("Орындау реті",`
+  <p>1. Берілгендерді жазыңдар.</p>
+  <p>2. Жазықтықтардың орналасуын анықтаңдар.</p>
+  <p>3. Қажетті формуланы таңдаңдар.</p>
+  <p>4. Жауапты өлшем бірлігімен көрсетіңдер.</p>
+ `)}
+
+ ${solution("Толық шығарылуы",t[2])}
+
+ <button class="action" onclick="openBoard()">
+  ✎ Тақтада шығару
+ </button>
+`));
+
+/* КОМАНДАЛЫҚ ОЙЫН — 15 СҰРАҚ */
+
+const questions=[
+ ["Екі әртүрлі жазықтықтың ортақ нүктелері болмаса?",
+  ["Параллель","Перпендикуляр","Беттеседі","Қиылысады"],0],
+
+ ["Екі жазықтық қиылысса, ортақ бөлігі?",
+  ["Нүкте","Түзу","Шеңбер","Шар"],1],
+
+ ["α ⟂ β нені білдіреді?",
+  ["Параллель","Перпендикуляр","Беттесу","Айқас"],1],
+
+ ["Перпендикуляр жазықтықтардың бұрышы?",
+  ["30°","45°","60°","90°"],3],
+
+ ["Параллель жазықтықтардың арақашықтығы?",
+  ["Тұрақты","Өзгереді","Нөл","Шексіз"],0],
+
+ ["Кубтың қарама-қарсы жақтары?",
+  ["Қиылысады","Параллель","Айқас","Беттеседі"],1],
+
+ ["Кубтың көршілес жақтары?",
+  ["Параллель","Перпендикуляр","Беттеседі","Ортақ емес"],1],
+
+ ["Екіжақты бұрыштың қыры дегеніміз?",
+  ["Ортақ түзу","Нүкте","Шеңбер","Биіктік"],0],
+
+ ["Екі параллель жазықтықтың ортақ нүктелері?",
+  ["0","1","2","Шексіз"],0],
+
+ ["Екіжақты бұрышты қандай құралмен өлшей аламыз?",
+  ["Сызғышпен","Транспортирмен","Калькулятормен","Термометрмен"],1],
+
+ ["Көлбеу 13, проекция 5. Биіктігі?",
+  ["8","10","12","15"],2],
+
+ ["Көлбеу 17, проекция 8. Биіктігі?",
+  ["9","12","15","16"],2],
+
+ ["sin 30° қанша?",
+  ["1/2","1","0","√3"],0],
+
+ ["cos 60° қанша?",
+  ["0","1/2","1","√3"],1],
+
+ ["Көлбеу 25, проекция 7. Биіктігі?",
+  ["18","20","24","26"],2]
+];
+
+let gameAnswers={};
+let scores=[0,0,0];
+
+for(let round=0;round<4;round++){
+ add("game","Командалық ойын · "+(round+1)+"-кезең",`
+  <span class="tag">15 СҰРАҚ · 3 КОМАНДА · +10 ҰПАЙ</span>
+
+  <div class="scoreGrid">
+   <div class="score">1-команда<b id="team0">0</b></div>
+   <div class="score">2-команда<b id="team1">0</b></div>
+   <div class="score">3-команда<b id="team2">0</b></div>
+  </div>
+
+  <div id="gameQuestions"></div>
+
+  <button class="action" onclick="resetGame()">
+   ↻ Қайта бастау
+  </button>
+ `);
+}
+
+/* ҮЙ ЖҰМЫСЫ — 2 БЕТ */
+
+add("homework","Үй жұмысы · Екі есеп",`
+ ${card("1-есеп. Параллель жазықтықтар",`
+  <p>
+   Екі параллель жазықтықтың арақашықтығы
+   <strong>20 см</strong>.
+  </p>
+  <p>
+   Оларды қосатын көлбеу кесіндінің
+   ұзындығы <strong>29 см</strong>.
+  </p>
+  <p>
+   Көлбеудің жазықтықтағы проекциясын табыңдар.
+  </p>
+ `)}
+
+ ${card("2-есеп. Екіжақты бұрыш",`
+  <p>
+   Екіжақты бұрыштың өлшемі <strong>30°</strong>.
+   Оның тікбұрышты қимасындағы гипотенуза
+   <strong>36 см</strong>.
+  </p>
+  <p>
+   Бұрышқа қарсы және іргелес
+   катеттердің ұзындықтарын табыңдар.
+  </p>
+ `)}
+`);
+
+add("homework","Үй жұмысы · Геометриялық жұмыс",`
+ ${picture("intersect","Қиылысатын жазықтықтар")}
+
+ ${card("3-тапсырма. Сызбалар",`
+  <p>Екі параллель жазықтықтың сызбасын салыңдар.</p>
+  <p>Екі қиылысатын жазықтықтың сызбасын салыңдар.</p>
+  <p>Екі перпендикуляр жазықтықты көрсетіңдер.</p>
+  <p>Оларды α және β әріптерімен белгілеңдер.</p>
+ `)}
+
+ ${card("4-тапсырма. Түсіндіру",`
+  <p>
+   Параллель және перпендикуляр жазықтықтардың
+   айырмашылығын 6–8 сөйлеммен жазыңдар.
+  </p>
+ `)}
+`);
+
+add("finish","§7. Екі жазықтық — қорытынды",`
+ <p class="lead">
+  Біз жазықтықтардың параллель,
+  қиылысатын, перпендикуляр және беттесетін
+  жағдайларын қарастырдық. Екіжақты
+  бұрыштың анықтамасын, арақашықтықты
+  және есептеу әдістерін үйрендік.
+ </p>
+
+ <div class="grid2">
+  ${picture("parallel","Параллель")}
+  ${picture("intersect","Қиылысатын")}
+  ${picture("perpendicular","Перпендикуляр")}
+  ${picture("distance","Арақашықтық")}
+ </div>
+
+ <div class="formula">α ∥ β</div>
+ <div class="formula">α ⟂ β</div>
+ <div class="formula">l² = h² + p²</div>
+
+ ${card("Қорытынды сұрақтар",`
+  <p>1. Екі жазықтық қалай орналасуы мүмкін?</p>
+  <p>2. Параллель жазықтықтар деген не?</p>
+  <p>3. Екіжақты бұрыш дегеніміз не?</p>
+  <p>4. Перпендикуляр жазықтықтардың бұрышы қанша?</p>
+  <p>5. Арақашықтық қалай есептеледі?</p>
+ `)}
+
+ <button class="action" onclick="goTo(0)">
+  Бастапқы бетке қайту
+ </button>
+`);
+
+/* ==========================================
+   3. САБАҚ БАСҚАРУЫ
+========================================== */
+
+const sections=[
+ ["intro","🏠 Кіріспе"],
+ ["theory","📖 Түсіндірме"],
+ ["notes","📝 Конспект"],
+ ["tasks","📐 4 деңгей"],
+ ["game","🏆 Командалық ойын"],
+ ["homework","📚 Үй жұмысы"],
+ ["finish","✅ Қорытынды"]
+];
+
+let slideIndex=0;
+
+function createSidebar(){
+ const root=document.getElementById("sectionButtons");
+
+ sections.forEach(([id,label])=>{
+  const b=document.createElement("button");
+
+  b.className="sideBtn";
+  b.dataset.section=id;
+  b.textContent=label;
+
+  b.onclick=()=>{
+   const i=slides.findIndex(s=>s.section===id);
+   if(i>=0)goTo(i);
+  };
+
+  root.appendChild(b);
+ });
+}
+
+function goTo(i){
+ slideIndex=Math.max(0,Math.min(slides.length-1,i));
+
+ const s=slides[slideIndex];
+ const label=sections.find(x=>x[0]===s.section)[1];
+
+ document.getElementById("slideContent").innerHTML=`
+  <div class="eyebrow">${label}</div>
+  <h1>${s.title}</h1>
+  ${s.html}
+ `;
+
+ document.getElementById("counter").textContent=
+  (slideIndex+1)+" / "+slides.length;
+
+ document.getElementById("prevBtn").disabled=
+  slideIndex===0;
+
+ document.getElementById("nextBtn").disabled=
+  slideIndex===slides.length-1;
+
+ document.querySelectorAll(".sideBtn").forEach(b=>{
+  b.classList.toggle("active",b.dataset.section===s.section);
+ });
+
+ document.getElementById("slideView").scrollTop=0;
+
+ if(s.section==="game"){
+  const round=slides.slice(0,slideIndex+1)
+   .filter(x=>x.section==="game").length-1;
+
+  renderGame(round);
+ }
+}
+
+function previousSlide(){goTo(slideIndex-1)}
+function nextSlide(){goTo(slideIndex+1)}
+
+document.addEventListener("keydown",e=>{
+ if(document.getElementById("whiteboard").classList.contains("open"))return;
+ if(e.target.matches("input,textarea"))return;
+
+ if(e.key==="ArrowLeft")previousSlide();
+ if(e.key==="ArrowRight")nextSlide();
+});
+
+function renderGame(round){
+ const root=document.getElementById("gameQuestions");
+
+ if(!root)return;
+
+ root.innerHTML="";
+
+ for(let i=round*4;i<Math.min((round+1)*4,questions.length);i++){
+  const q=questions[i];
+  const team=i%3;
+
+  const box=document.createElement("div");
+  box.className="card";
+
+  const h=document.createElement("h3");
+  h.textContent=(i+1)+"-сұрақ · "+(team+1)+"-команда";
+
+  const p=document.createElement("p");
+  p.textContent=q[0];
+
+  box.append(h,p);
+
+  q[1].forEach((option,j)=>{
+   const b=document.createElement("button");
+
+   b.className="choice";
+   b.textContent="ABCD"[j]+") "+option;
+
+   if(gameAnswers[i]!==undefined){
+    b.disabled=true;
+
+    if(j===q[2])b.classList.add("correct");
+    else if(j===gameAnswers[i])b.classList.add("wrong");
+   }
+
+   b.onclick=()=>{
+    if(gameAnswers[i]!==undefined)return;
+
+    gameAnswers[i]=j;
+
+    if(j===q[2])scores[team]+=10;
+
+    renderGame(round);
+   };
+
+   box.appendChild(b);
+  });
+
+  if(gameAnswers[i]!==undefined){
+   const answer=document.createElement("p");
+
+   answer.textContent=gameAnswers[i]===q[2]
+    ?"Дұрыс! +10 ұпай."
+    :"Дұрыс жауап: "+q[1][q[2]];
+
+   box.appendChild(answer);
+  }
+
+  root.appendChild(box);
+ }
+
+ scores.forEach((v,i)=>{
+  document.getElementById("team"+i).textContent=v;
+ });
+
+ document.getElementById("stars").textContent=
+  scores.reduce((a,b)=>a+b,0);
+}
+
+function resetGame(){
+ gameAnswers={};
+ scores=[0,0,0];
+
+ document.getElementById("stars").textContent=0;
+ goTo(slideIndex);
+}
+
+/* ==========================================
+   4. 80 МИНУТТЫҚ ТАЙМЕР
+========================================== */
+
+function updateClock(){
+ document.getElementById("clock").textContent=
+  new Intl.DateTimeFormat("kk-KZ",{
+   timeZone:"Asia/Almaty",
+   hour:"2-digit",
+   minute:"2-digit",
+   second:"2-digit",
+   hour12:false
+  }).format(new Date());
+}
+
+updateClock();
+setInterval(updateClock,1000);
+
+let remaining=4800;
+let timerId=null;
+let deadline=0;
+
+function formatTime(seconds){
+ return String(Math.floor(seconds/60)).padStart(2,"0")
+  +":"+String(seconds%60).padStart(2,"0");
+}
+
+function paintTimer(){
+ document.getElementById("remaining").textContent=
+  formatTime(remaining);
+
+ document.getElementById("elapsed").textContent=
+  formatTime(4800-remaining);
+}
+
+function startTimer(){
+ if(timerId||remaining===0)return;
+
+ deadline=Date.now()+remaining*1000;
+
+ timerId=setInterval(()=>{
+  remaining=Math.max(0,
+   Math.ceil((deadline-Date.now())/1000)
+  );
+
+  paintTimer();
+
+  if(remaining===0){
+   pauseTimer();
+   alert("80 минут аяқталды!");
+  }
+ },250);
+}
+
+function pauseTimer(){
+ if(timerId){
+  remaining=Math.max(0,
+   Math.ceil((deadline-Date.now())/1000)
+  );
+ }
+
+ clearInterval(timerId);
+ timerId=null;
+
+ paintTimer();
+}
+
+function resetTimer(){
+ pauseTimer();
+ remaining=4800;
+ paintTimer();
+}
+
+function toggleFullscreen(){
+ if(document.fullscreenElement){
+  document.exitFullscreen?.();
+ }else{
+  document.documentElement.requestFullscreen?.();
+ }
+}
+
+/* ==========================================
+   5. ҒЫЛЫМИ КАЛЬКУЛЯТОР
+========================================== */
+
+const calculator=document.getElementById("calculator");
+const calcInput=document.getElementById("calcInput");
+
+function openCalc(scientific){
+ calculator.classList.add("open");
+
+ document.getElementById("calcTitle").textContent=
+  scientific?"Ғылыми калькулятор · DEG":"Калькулятор";
+
+ const keys=scientific
+ ?[
+  "C","⌫","(",")","÷",
+  "sin","cos","tan","cot","√",
+  "7","8","9","^","×",
+  "4","5","6","π","−",
+  "1","2","3",".","+",
+  "0","00","="
+ ]
+ :[
+  "C","⌫","(",")","÷",
+  "7","8","9","×",
+  "4","5","6","−",
+  "1","2","3","+",
+  "0","00",".","="
+ ];
+
+ const root=document.getElementById("calcKeys");
+ root.innerHTML="";
+
+ keys.forEach(k=>{
+  const b=document.createElement("button");
+
+  b.textContent=k;
+  b.onclick=()=>calcPress(k);
+
+  root.appendChild(b);
+ });
+}
+
+function closeCalc(){
+ calculator.classList.remove("open");
+}
+
+function calcPress(k){
+ if(k==="C"){
+  calcInput.value="";
+  return;
+ }
+
+ if(k==="⌫"){
+  calcInput.value=calcInput.value.slice(0,-1);
+  return;
+ }
+
+ if(k==="="){
+  try{
+   const result=calculate(calcInput.value);
+
+   if(!Number.isFinite(result))throw Error();
+
+   calcInput.value=String(Number(result.toPrecision(12)));
+  }catch{
+   calcInput.value="Қате";
+  }
+
+  return;
+ }
+
+ const map={
+  "×":"*",
+  "÷":"/",
+  "−":"-",
+  "π":"pi",
+  "√":"sqrt(",
+  "sin":"sin(",
+  "cos":"cos(",
+  "tan":"tan(",
+  "cot":"cot("
+ };
+
+ calcInput.value+=map[k]??k;
+}
+
+function calculate(expr){
+ const cleaned=expr.replace(/\s/g,"");
+
+ const tokens=cleaned.match(
+  /(?:\d+(?:\.\d*)?|\.\d+)|[a-z]+|[()+\-*/^]/gi
+ )||[];
+
+ if(tokens.join("")!==cleaned)throw Error();
+
+ let i=0;
+
+ function atom(){
+  const t=tokens[i++];
+
+  if(t==="("){
+   const v=addNumbers();
+
+   if(tokens[i++]!==")")throw Error();
+
+   return v;
+  }
+
+  if(t==="pi")return Math.PI;
+
+  const f={
+   sin:x=>Math.sin(x*Math.PI/180),
+   cos:x=>Math.cos(x*Math.PI/180),
+   tan:x=>Math.tan(x*Math.PI/180),
+   cot:x=>1/Math.tan(x*Math.PI/180),
+   sqrt:x=>Math.sqrt(x)
+  };
+
+  if(f[t]){
+   if(tokens[i++]!=="(")throw Error();
+
+   const value=addNumbers();
+
+   if(tokens[i++]!==")")throw Error();
+
+   return f[t](value);
+  }
+
+  if(t===undefined||!Number.isFinite(Number(t)))
+   throw Error();
+
+  return Number(t);
+ }
+
+ function power(){
+  if(tokens[i]==="+"){
+   i++;
+   return power();
+  }
+
+  if(tokens[i]==="-"){
+   i++;
+   return -power();
+  }
+
+  let value=atom();
+
+  if(tokens[i]==="^"){
+   i++;
+   value=value**power();
+  }
+
+  return value;
+ }
+
+ function multiply(){
+  let value=power();
+
+  while(["*","/"].includes(tokens[i])){
+   const op=tokens[i++];
+   const n=power();
+
+   value=op==="*"?value*n:value/n;
+  }
+
+  return value;
+ }
+
+ function addNumbers(){
+  let value=multiply();
+
+  while(["+","-"].includes(tokens[i])){
+   const op=tokens[i++];
+   const n=multiply();
+
+   value=op==="+"?value+n:value-n;
+  }
+
+  return value;
+ }
+
+ const answer=addNumbers();
+
+ if(i!==tokens.length)throw Error();
+
+ return answer;
+}
+
+/* КАЛЬКУЛЯТОРДЫ ЖЫЛЖЫТУ */
+const calcHandle=document.getElementById("calcHandle");
+let calcDrag=null;
+
+calcHandle.addEventListener("pointerdown",e=>{
+ if(e.target.closest("button"))return;
+
+ const r=calculator.getBoundingClientRect();
+
+ calcDrag={
+  sx:e.clientX,
+  sy:e.clientY,
+  x:r.left,
+  y:r.top
+ };
+
+ calcHandle.setPointerCapture(e.pointerId);
+});
+
+calcHandle.addEventListener("pointermove",e=>{
+ if(!calcDrag)return;
+
+ calculator.style.left=Math.max(0,Math.min(
+  innerWidth-calculator.offsetWidth,
+  calcDrag.x+e.clientX-calcDrag.sx
+ ))+"px";
+
+ calculator.style.top=Math.max(0,Math.min(
+  innerHeight-calculator.offsetHeight,
+  calcDrag.y+e.clientY-calcDrag.sy
+ ))+"px";
+});
+
+calcHandle.addEventListener("pointerup",()=>calcDrag=null);
+calcHandle.addEventListener("pointercancel",()=>calcDrag=null);
+
+/* ==========================================
+   6. ИНТЕРАКТИВТІ АҚ ТАҚТА
+========================================== */
+
+const board=document.getElementById("whiteboard");
+const boardArea=document.getElementById("boardArea");
+const canvas=document.getElementById("boardCanvas");
+const ctx=canvas.getContext("2d");
+
+const cursor=document.getElementById("eraserCursor");
+const colorInput=document.getElementById("boardColor");
+const widthInput=document.getElementById("boardWidth");
+
+const ink=document.createElement("canvas");
+const inkCtx=ink.getContext("2d");
+
+let width=1;
+let height=1;
+let dpr=1;
+
+let zoom=1;
+let panX=0;
+let panY=0;
+
+let boardTool="pen";
+let gridVisible=false;
+let currentStroke=null;
+let activePointer=null;
+let draggingView=null;
+let anglePoints=[];
+
+let pages=[{objects:[]}];
+let pageIndex=0;
+let objects=pages[0].objects;
+
+let history=[];
+let redoHistory=[];
+
+const imageCache=new Map();
+
+try{
+ const stored=JSON.parse(
+  localStorage.getItem("mat7_whiteboard_v1")||"null"
+ );
+
+ if(Array.isArray(stored)&&stored.length&&
+   stored.every(p=>Array.isArray(p.objects))){
+  pages=stored;
+  objects=pages[0].objects;
+ }
+}catch(e){
+ console.warn(e);
+}
+
+function savePages(){
+ pages[pageIndex].objects=objects;
+
+ try{
+  localStorage.setItem(
+   "mat7_whiteboard_v1",
+   JSON.stringify(pages)
+  );
+ }catch(e){
+  console.warn(e);
+ }
+}
+
+function resetHistory(){
+ history=[JSON.stringify(objects)];
+ redoHistory=[];
+}
+
+function commit(){
+ history.push(JSON.stringify(objects));
+
+ if(history.length>50)history.shift();
+
+ redoHistory=[];
+ savePages();
+}
+
+function undoBoard(){
+ if(history.length<2)return;
+
+ redoHistory.push(history.pop());
+ objects=JSON.parse(history[history.length-1]);
+
+ savePages();
+ renderBoard();
+}
+
+function redoBoard(){
+ if(!redoHistory.length)return;
+
+ const state=redoHistory.pop();
+
+ history.push(state);
+ objects=JSON.parse(state);
+
+ savePages();
+ renderBoard();
+}
+
+function updatePages(){
+ document.getElementById("pageCount").textContent=
+  (pageIndex+1)+" / "+pages.length;
+
+ const root=document.getElementById("pagesList");
+ root.innerHTML="";
+
+ pages.forEach((p,i)=>{
+  const b=document.createElement("button");
+
+  b.textContent=(i+1)+"-бет"+(i===pageIndex?" ✓":"");
+
+  if(i===pageIndex)b.className="active";
+
+  b.onclick=()=>loadPage(i);
+  root.appendChild(b);
+ });
+}
+
+function loadPage(i){
+ if(i<0||i>=pages.length)return;
+
+ savePages();
+
+ pageIndex=i;
+ objects=pages[i].objects;
+ currentStroke=null;
+
+ resetHistory();
+ updatePages();
+ renderBoard();
+}
+
+function addBoardPage(){
+ savePages();
+ pages.push({objects:[]});
+ loadPage(pages.length-1);
+ savePages();
+}
+
+function prevBoardPage(){
+ loadPage(pageIndex-1);
+}
+
+function nextBoardPage(){
+ loadPage(pageIndex+1);
+}
+
+function togglePages(){
+ document.getElementById("pagesPanel")
+  .classList.toggle("open");
+
+ updatePages();
+}
+
+function deleteBoardPage(){
+ if(pages.length===1){
+  alert("Соңғы бетті өшіруге болмайды.");
+  return;
+ }
+
+ if(!confirm("Осы бетті өшіреміз бе?"))return;
+
+ pages.splice(pageIndex,1);
+
+ pageIndex=Math.min(pageIndex,pages.length-1);
+ objects=pages[pageIndex].objects;
+
+ resetHistory();
+ savePages();
+ updatePages();
+ renderBoard();
+}
+
+function openBoard(){
+ board.classList.add("open");
+ resizeCanvas();
+ updatePages();
+}
+
+function closeBoard(){
+ savePages();
+ hideEraser();
+ board.classList.remove("open");
+}
+
+function resizeCanvas(){
+ const r=boardArea.getBoundingClientRect();
+
+ width=Math.max(1,r.width);
+ height=Math.max(1,r.height);
+ dpr=Math.min(devicePixelRatio||1,2);
+
+ canvas.width=Math.round(width*dpr);
+ canvas.height=Math.round(height*dpr);
+
+ ink.width=canvas.width;
+ ink.height=canvas.height;
+
+ renderBoard();
+}
+
+window.addEventListener("resize",()=>{
+ if(board.classList.contains("open")){
+  resizeCanvas();
+ }
+});
+
+/* КООРДИНАТА */
+function screenPoint(e){
+ const r=canvas.getBoundingClientRect();
+
+ return{
+  x:e.clientX-r.left,
+  y:e.clientY-r.top
+ };
+}
+
+function worldPoint(p){
+ return{
+  x:(p.x-panX)/zoom,
+  y:(p.y-panY)/zoom
+ };
+}
+
+/* ӨШІРГІШ КӨРСЕТКІШІ */
+function updateCursorSize(){
+ const size=Number(widthInput.value)*6*zoom;
+
+ cursor.style.width=size+"px";
+ cursor.style.height=size+"px";
+}
+
+function showEraser(e){
+ if(boardTool!=="eraser")return;
+
+ const p=screenPoint(e);
+
+ cursor.style.left=p.x+"px";
+ cursor.style.top=p.y+"px";
+
+ updateCursorSize();
+ cursor.style.display="block";
+}
+
+function hideEraser(){
+ cursor.style.display="none";
+}
+
+widthInput.addEventListener("input",updateCursorSize);
+
+function selectTool(name){
+ boardTool=name;
+ anglePoints=[];
+
+ document.querySelectorAll("[data-tool]").forEach(b=>{
+  b.classList.toggle("active",b.dataset.tool===name);
+ });
+
+ boardArea.classList.toggle("eraserMode",name==="eraser");
+
+ canvas.style.cursor=
+  name==="hand"?"grab":name==="eraser"?"none":"crosshair";
+
+ hideEraser();
+ updateStatus();
+}
+
+function updateStatus(){
+ const percentage=Math.round(zoom*100)+"%";
+
+ document.getElementById("zoomCount").textContent=percentage;
+
+ document.getElementById("boardStatus").textContent=
+  boardTool==="eraser"
+  ?"Өшіргіш · толық өшіру · "+percentage
+  :boardTool+" · "+percentage;
+}
+
+function setZoom(value,x=width/2,y=height/2){
+ value=Math.max(.25,Math.min(3,value));
+
+ const wx=(x-panX)/zoom;
+ const wy=(y-panY)/zoom;
+
+ zoom=value;
+ panX=x-wx*zoom;
+ panY=y-wy*zoom;
+
+ updateStatus();
+ updateCursorSize();
+ renderBoard();
+}
+
+function zoomBoard(factor){
+ setZoom(zoom*factor);
+}
+
+function resetBoardView(){
+ zoom=1;
+ panX=0;
+ panY=0;
+
+ updateStatus();
+ renderBoard();
+}
+
+function toggleGrid(){
+ gridVisible=!gridVisible;
+ renderBoard();
+}
+
+canvas.addEventListener("wheel",e=>{
+ e.preventDefault();
+
+ const p=screenPoint(e);
+
+ setZoom(
+  zoom*(e.deltaY<0?1.1:1/1.1),
+  p.x,p.y
+ );
+},{passive:false});
+
+/* ==========================================
+   7. СЫЗҒЫШ, ТРАНСПОРТИР, ҮШБҰРЫШ
+========================================== */
+
+const instruments={
+ ruler:{
+  x:330,y:155,w:420,h:90,
+  scale:1,rot:0,visible:false
+ },
+ protractor:{
+  x:430,y:265,w:380,h:210,
+  scale:1,rot:0,visible:false
+ },
+ square:{
+  x:380,y:265,w:290,h:290,
+  scale:1,rot:0,visible:false
+ }
+};
+
+function updateInstrument(id){
+ const t=instruments[id];
+ const el=document.getElementById(id);
+
+ el.classList.toggle("visible",t.visible);
+
+ el.style.left=t.x+"px";
+ el.style.top=t.y+"px";
+
+ el.style.setProperty("--rot",t.rot+"deg");
+ el.style.setProperty("--scale",t.scale);
+}
+
+function toggleInstrument(id){
+ instruments[id].visible=!instruments[id].visible;
+ updateInstrument(id);
+}
+
+function hideInstrument(id){
+ instruments[id].visible=false;
+ updateInstrument(id);
+}
+
+function resizeInstrument(id,factor){
+ const t=instruments[id];
+
+ t.scale=Math.max(.35,Math.min(3,t.scale*factor));
+
+ updateInstrument(id);
+}
+
+function rotateInstrument(id,a){
+ instruments[id].rot+=a;
+ updateInstrument(id);
+}
+
+Object.entries(instruments).forEach(([id,t])=>{
+ const handle=document.querySelector("#"+id+" .drag");
+
+ let drag=null;
+
+ handle.addEventListener("pointerdown",e=>{
+  e.preventDefault();
+  e.stopPropagation();
+
+  drag={
+   sx:e.clientX,
+   sy:e.clientY,
+   x:t.x,
+   y:t.y
+  };
+
+  handle.setPointerCapture(e.pointerId);
+ });
+
+ handle.addEventListener("pointermove",e=>{
+  if(!drag)return;
+
+  t.x=drag.x+e.clientX-drag.sx;
+  t.y=drag.y+e.clientY-drag.sy;
+
+  updateInstrument(id);
+ });
+
+ handle.addEventListener("pointerup",()=>drag=null);
+ handle.addEventListener("pointercancel",()=>drag=null);
+
+ updateInstrument(id);
+});
+
+const NS="http://www.w3.org/2000/svg";
+
+function svgEl(tag,attrs,text){
+ const el=document.createElementNS(NS,tag);
+
+ Object.entries(attrs).forEach(([k,v])=>{
+  el.setAttribute(k,v);
+ });
+
+ if(text!==undefined)el.textContent=text;
+
+ return el;
+}
+
+const rulerSVG=document.getElementById("rulerSVG");
+
+rulerSVG.appendChild(svgEl("rect",{
+ x:2,y:8,width:416,height:75,rx:6,
+ fill:"#f0ca79",
+ "fill-opacity":".85",
+ stroke:"#b58c43",
+ "stroke-width":2
+}));
+
+for(let i=0;i<=40;i++){
+ const x=10+i*10;
+ const big=i%5===0;
+
+ rulerSVG.appendChild(svgEl("line",{
+  x1:x,y1:10,
+  x2:x,y2:big?42:26,
+  stroke:"#604821",
+  "stroke-width":big?2:1
+ }));
+
+ if(big){
+  rulerSVG.appendChild(svgEl("text",{
+   x:x-4,y:62,
+   fill:"#604821",
+   "font-size":12
+  },String(i/5)));
+ }
+}
+
+const proSVG=document.getElementById("protractorSVG");
+
+proSVG.appendChild(svgEl("path",{
+ d:"M20 195 A170 170 0 0 1 360 195 L20 195 Z",
+ fill:"#90c9ed",
+ "fill-opacity":".48",
+ stroke:"#287eac",
+ "stroke-width":3
+}));
+
+for(let d=0;d<=180;d+=5){
+ const a=Math.PI-d*Math.PI/180;
+ const r=d%10===0?140:153;
+
+ proSVG.appendChild(svgEl("line",{
+  x1:190+r*Math.cos(a),
+  y1:195-r*Math.sin(a),
+  x2:190+168*Math.cos(a),
+  y2:195-168*Math.sin(a),
+  stroke:"#286d95",
+  "stroke-width":d%10===0?2:1
+ }));
+
+ if(d%30===0){
+  proSVG.appendChild(svgEl("text",{
+   x:190+116*Math.cos(a),
+   y:195-116*Math.sin(a),
+   "text-anchor":"middle",
+   fill:"#18587b",
+   "font-size":12
+  },String(d)));
+ }
+}
+
+/* ==========================================
+   8. CANVAS ЖАЗУ ЖӘНЕ ӨШІРУ
+========================================== */
+
+function getImage(src){
+ if(imageCache.has(src))return imageCache.get(src);
+
+ const im=new Image();
+ imageCache.set(src,im);
+
+ im.onload=renderBoard;
+ im.src=src;
+
+ return im;
+}
+
+function paintObject(c,o){
+ c.save();
+
+ c.strokeStyle=o.color||"#1979cc";
+ c.fillStyle=o.color||"#1979cc";
+
+ c.lineWidth=o.size||4;
+ c.lineCap="round";
+ c.lineJoin="round";
+
+ if(["pen","highlighter","eraser"].includes(o.type)){
+  if(o.type==="highlighter"){
+   c.globalAlpha=.28;
+   c.lineWidth=(o.size||4)*4;
+  }
+
+  if(o.type==="eraser"){
+   c.globalCompositeOperation="destination-out";
+   c.globalAlpha=1;
+   c.lineWidth=(o.size||4)*6;
+  }
+
+  const pts=o.points||[];
+
+  if(pts.length){
+   c.beginPath();
+   c.moveTo(pts[0].x,pts[0].y);
+
+   if(pts.length===1){
+    c.lineTo(pts[0].x+.01,pts[0].y+.01);
+   }else{
+    pts.slice(1).forEach(p=>{
+     c.lineTo(p.x,p.y);
+    });
+   }
+
+   c.stroke();
+  }
+ }
+
+ if(o.type==="text"){
+  c.font="700 30px Manrope,Arial";
+  c.textBaseline="top";
+
+  (o.text||"").split("\n").forEach((line,i)=>{
+   c.fillText(line,o.x,o.y+i*38);
+  });
+ }
+
+ if(["line","arrow"].includes(o.type)){
+  c.beginPath();
+  c.moveTo(o.x1,o.y1);
+  c.lineTo(o.x2,o.y2);
+  c.stroke();
+
+  if(o.type==="arrow"){
+   const a=Math.atan2(o.y2-o.y1,o.x2-o.x1);
+
+   [-.5,.5].forEach(d=>{
+    c.beginPath();
+    c.moveTo(o.x2,o.y2);
+    c.lineTo(
+     o.x2-18*Math.cos(a+d),
+     o.y2-18*Math.sin(a+d)
+    );
+    c.stroke();
+   });
+  }
+ }
+
+ if(o.type==="rect"){
+  c.strokeRect(
+   o.x1,o.y1,
+   o.x2-o.x1,
+   o.y2-o.y1
+  );
+ }
+
+ if(o.type==="circle"){
+  c.beginPath();
+  c.ellipse(
+   (o.x1+o.x2)/2,
+   (o.y1+o.y2)/2,
+   Math.max(.1,Math.abs(o.x2-o.x1)/2),
+   Math.max(.1,Math.abs(o.y2-o.y1)/2),
+   0,0,Math.PI*2
+  );
+  c.stroke();
+ }
+
+ if(o.type==="compass"){
+  c.beginPath();
+  c.arc(
+   o.x1,o.y1,
+   Math.hypot(o.x2-o.x1,o.y2-o.y1),
+   0,Math.PI*2
+  );
+  c.stroke();
+ }
+
+ if(o.type==="triangle"){
+  c.beginPath();
+  c.moveTo((o.x1+o.x2)/2,o.y1);
+  c.lineTo(o.x2,o.y2);
+  c.lineTo(o.x1,o.y2);
+  c.closePath();
+  c.stroke();
+ }
+
+ if(o.type==="table"){
+  for(let i=0;i<=4;i++){
+   const x=o.x1+(o.x2-o.x1)*i/4;
+   const y=o.y1+(o.y2-o.y1)*i/4;
+
+   c.beginPath();
+
+   c.moveTo(x,o.y1);
+   c.lineTo(x,o.y2);
+
+   c.moveTo(o.x1,y);
+   c.lineTo(o.x2,y);
+
+   c.stroke();
+  }
+ }
+
+ if(o.type==="angle"){
+  const a=o.a,b=o.b,d=o.d;
+
+  c.beginPath();
+  c.moveTo(a.x,a.y);
+  c.lineTo(b.x,b.y);
+  c.lineTo(d.x,d.y);
+  c.stroke();
+
+  const ux=a.x-b.x;
+  const uy=a.y-b.y;
+
+  const vx=d.x-b.x;
+  const vy=d.y-b.y;
+
+  const den=Math.hypot(ux,uy)*Math.hypot(vx,vy);
+
+  if(den){
+   const deg=Math.acos(
+    Math.max(-1,Math.min(1,(ux*vx+uy*vy)/den))
+   )*180/Math.PI;
+
+   c.font="700 22px Arial";
+   c.fillText(deg.toFixed(1)+"°",b.x+12,b.y-15);
+  }
+ }
+
+ if(o.type==="image"){
+  const im=getImage(o.src);
+
+  if(im.complete&&im.naturalWidth){
+   c.drawImage(im,o.x,o.y,o.w,o.h);
+  }
+ }
+
+ c.restore();
+}
+
+function drawGrid(){
+ if(!gridVisible)return;
+
+ const step=50*zoom;
+ if(step<8)return;
+
+ const sx=((panX%step)+step)%step;
+ const sy=((panY%step)+step)%step;
+
+ ctx.save();
+ ctx.beginPath();
+
+ ctx.strokeStyle="#e4edf5";
+ ctx.lineWidth=1;
+
+ for(let x=sx;x<width;x+=step){
+  ctx.moveTo(x,0);
+  ctx.lineTo(x,height);
+ }
+
+ for(let y=sy;y<height;y+=step){
+  ctx.moveTo(0,y);
+  ctx.lineTo(width,y);
+ }
+
+ ctx.stroke();
+ ctx.restore();
+}
+
+function renderBoard(){
+ ctx.setTransform(dpr,0,0,dpr,0,0);
+ ctx.clearRect(0,0,width,height);
+
+ ctx.fillStyle="white";
+ ctx.fillRect(0,0,width,height);
+
+ drawGrid();
+
+ inkCtx.setTransform(1,0,0,1,0,0);
+ inkCtx.clearRect(0,0,ink.width,ink.height);
+
+ inkCtx.setTransform(dpr,0,0,dpr,0,0);
+ inkCtx.translate(panX,panY);
+ inkCtx.scale(zoom,zoom);
+
+ objects.forEach(o=>paintObject(inkCtx,o));
+
+ if(currentStroke){
+  paintObject(inkCtx,currentStroke);
+ }
+
+ ctx.drawImage(ink,0,0,width,height);
+}
+
+/* ==========================================
+   9. САУСАҚПЕН ЖАЗУ ЖӘНЕ ӨШІРУ
+========================================== */
+
+function startDrawing(e){
+ if(activePointer!==null)return;
+ if(e.button!==undefined&&e.button!==0)return;
+
+ e.preventDefault();
+
+ const s=screenPoint(e);
+ const p=worldPoint(s);
+
+ if(boardTool==="text"){
+  const value=prompt("Мәтінді енгізіңіз:");
+
+  if(value){
+   objects.push({
+    type:"text",
+    text:value,
+    x:p.x,
+    y:p.y,
+    color:colorInput.value
+   });
+
+   commit();
+   renderBoard();
+  }
+  return;
+ }
+
+ if(boardTool==="angle"){
+  anglePoints.push(p);
+
+  if(anglePoints.length===3){
+   objects.push({
+    type:"angle",
+    a:anglePoints[0],
+    b:anglePoints[1],
+    d:anglePoints[2],
+    color:colorInput.value,
+    size:Number(widthInput.value)
+   });
+
+   anglePoints=[];
+   commit();
+   renderBoard();
+  }
+  return;
+ }
+
+ activePointer=e.pointerId;
+ canvas.setPointerCapture(e.pointerId);
+
+ if(boardTool==="hand"){
+  draggingView={
+   x:s.x,
+   y:s.y,
+   panX,panY
+  };
+
+  return;
+ }
+
+ if(boardTool==="eraser"){
+  showEraser(e);
+ }
+
+ const size=Number(widthInput.value);
+ const color=colorInput.value;
+
+ if(["pen","highlighter","eraser"].includes(boardTool)){
+  currentStroke={
+   type:boardTool,
+   points:[p],
+   size,color
+  };
+ }else{
+  currentStroke={
+   type:boardTool,
+   x1:p.x,y1:p.y,
+   x2:p.x,y2:p.y,
+   size,color
+  };
+ }
+
+ renderBoard();
+}
+
+function moveDrawing(e){
+ if(boardTool==="eraser"&&
+   (e.pointerType==="mouse"||e.pointerId===activePointer)){
+  showEraser(e);
+ }
+
+ if(e.pointerId!==activePointer)return;
+
+ e.preventDefault();
+
+ const s=screenPoint(e);
+ const p=worldPoint(s);
+
+ if(draggingView){
+  panX=draggingView.panX+s.x-draggingView.x;
+  panY=draggingView.panY+s.y-draggingView.y;
+
+  renderBoard();
+  return;
+ }
+
+ if(!currentStroke)return;
+
+ if(["pen","highlighter","eraser"].includes(currentStroke.type)){
+  const pts=currentStroke.points;
+  const last=pts[pts.length-1];
+
+  if(Math.hypot(p.x-last.x,p.y-last.y)>.3){
+   pts.push(p);
+  }
+ }else{
+  currentStroke.x2=p.x;
+  currentStroke.y2=p.y;
+ }
+
+ renderBoard();
+}
+
+function finishDrawing(e){
+ if(e.pointerId!==activePointer)return;
+
+ if(currentStroke){
+  objects.push(currentStroke);
+  commit();
+ }
+
+ currentStroke=null;
+ draggingView=null;
+ activePointer=null;
+
+ if(e.pointerType!=="mouse"){
+  hideEraser();
+ }
+
+ renderBoard();
+}
+
+canvas.addEventListener("pointerdown",startDrawing);
+canvas.addEventListener("pointermove",moveDrawing);
+canvas.addEventListener("pointerup",finishDrawing);
+
+canvas.addEventListener("pointercancel",e=>{
+ finishDrawing(e);
+ hideEraser();
+});
+
+canvas.addEventListener("pointerleave",e=>{
+ if(e.pointerType==="mouse"&&activePointer===null){
+  hideEraser();
+ }
+});
+
+function clearBoard(){
+ if(!confirm("Осы бетті тазалаймыз ба?"))return;
+
+ objects=[];
+ commit();
+ renderBoard();
+}
+
+document.getElementById("boardFile")
+ .addEventListener("change",e=>{
+  const file=e.target.files?.[0];
+  if(!file)return;
+
+  const reader=new FileReader();
+
+  reader.onload=()=>{
+   const im=new Image();
+
+   im.onload=()=>{
+    const w=Math.min(480,im.width);
+    const h=w*im.height/im.width;
+
+    objects.push({
+     type:"image",
+     src:reader.result,
+     x:(width/2-panX)/zoom-w/2,
+     y:(height/2-panY)/zoom-h/2,
+     w,h
+    });
+
+    commit();
+    renderBoard();
+   };
+
+   im.src=reader.result;
+  };
+
+  reader.readAsDataURL(file);
+  e.target.value="";
+ });
+
+function exportBoard(){
+ renderBoard();
+
+ const a=document.createElement("a");
+
+ a.download="mat7-taqta.png";
+ a.href=canvas.toDataURL("image/png");
+
+ a.click();
+}
+
+document.addEventListener("keydown",e=>{
+ if(!board.classList.contains("open"))return;
+
+ if(e.key==="Escape"){
+  closeBoard();
+ }
+
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="z"){
+  e.preventDefault();
+  undoBoard();
+ }
+
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="y"){
+  e.preventDefault();
+  redoBoard();
+ }
+});
+
+/* ==========================================
+   10. САЙТТЫ ІСКЕ ҚОСУ
+========================================== */
+
+createSidebar();
+goTo(0);
+paintTimer();
+
+resetHistory();
+selectTool("pen");
+updatePages();
+updateStatus();
+
+</script>
+</body>
+</html>
